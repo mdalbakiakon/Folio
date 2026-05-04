@@ -126,7 +126,7 @@ Z"
                 muted
                 playsInline
                 controls={false}
-                preload="auto"
+                preload="metadata"
                 onContextMenu={(e) => e.preventDefault()}
                 className="w-full h-full object-cover brightness-75 contrast-125"
               />
