@@ -44,7 +44,7 @@ const Navbar = () => {
 
         {/* Resume Button */}
         <a
-          href="https://drive.google.com/drive/folders/11qEimpSNHYFikgK8PYE95CTp4NbUuKXz/view"
+          href="https://drive.google.com/file/d/1D1LRvNtntV1RegY6D12CcVD-KzQ8Rda6/view"
           target="_blank"
           rel="noopener noreferrer"
           className="w-32.5 bg-white text-(--txt-nav-cv) text-center py-2.5 rounded-xl cursor-pointer inline-block"
