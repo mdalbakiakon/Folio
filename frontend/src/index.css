@@ -11,7 +11,7 @@
 /* custom aston font */
 @font-face {
   font-family: "conthrax";
-  src: url("/fonts/conthrax.woff2") format(".woff2");
+  src: url("/fonts/conthrax.woff2") format("woff2");
   font-display: swap;
 }
 
