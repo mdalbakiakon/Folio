@@ -58,12 +58,12 @@ const Preloader = ({ onComplete }) => {
       ref={loaderRef}
       className="w-full h-dvh relative flex flex-col justify-center items-center"
     >
-      <div className="text-9xl relative z-50 bg-[linear-gradient(110deg,#111_0%,#fff_20%,#c0c0c0_40%,#fff_60%,#111_98%)] bg-clip-text text-transparent">
+      <div className="text-5xl sm:text-7xl lg:text-9xl relative z-50 bg-[linear-gradient(110deg,#111_0%,#fff_20%,#c0c0c0_40%,#fff_60%,#111_98%)] bg-clip-text text-transparent">
         portfolio
       </div>
 
       <div className="absolute bottom-0 right-0 flex items-end justify-end bg-(--bg-primary) z-50">
-        <div className="p-6 text-(--txt-primary) text-2xl">
+        <div className="p-6 text-(--txt-primary) text-xl sm:text-2xl">
           <span ref={textRef}>0%</span>
         </div>
       </div>

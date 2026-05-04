@@ -48,18 +48,18 @@ Z"
 
       <Layout>
         <div className="h-[calc(100vh-120px)] w-full flex justify-center items-center">
-          <div className="w-full h-fit relative">
-            <button className="w-[14.5%] bg-transparent h-12 absolute top-0 right-0 rounded-2xl text-(--txt-accent)">
+          <div className="w-full h-fit relative hidden md:block">
+            <button className="md:h-[6.8%] md:w-[14.5%] absolute top-0 right-0 text-(--txt-accent) md:text-[14px] lg:text-base flex justify-center items-center">
               Since 2022
             </button>
 
-            <ul className="absolute w-[19.5%] h-12 bottom-0 left-0 rounded-2xl flex justify-around items-center">
+            <ul className="absolute md:h-[6.8%] md:w-[19.5%] bottom-0 left-0 rounded-2xl flex justify-around items-center">
               <li>
                 <a
                   href="https://www.linkedin.com/in/md-al-baki-akon-352989362/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 text-xl text-(--txt-accent)"
+                  className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 md:text-base lg:text-xl text-(--txt-accent)"
                 >
                   <FaLinkedin />
                 </a>
@@ -70,7 +70,7 @@ Z"
                   href="https://github.com/mdalbakiakon"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 text-xl text-(--txt-accent)"
+                  className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 md:text-base lg:text-xl text-(--txt-accent)"
                 >
                   <SiGithub />
                 </a>
@@ -81,7 +81,7 @@ Z"
                   href="https://leetcode.com/u/baki_dev8131/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 text-xl text-(--txt-accent)"
+                  className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 md:text-base lg:text-xl text-(--txt-accent)"
                 >
                   <SiLeetcode />
                 </a>
@@ -90,7 +90,7 @@ Z"
               <li>
                 <a
                   href="mailto:mdalbakiakon.dev@gmail.com"
-                  className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 text-xl text-(--txt-accent)"
+                  className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 md:text-base lg:text-xl text-(--txt-accent)"
                 >
                   <MdMail />
                 </a>
@@ -101,7 +101,7 @@ Z"
                   href="https://wa.me/8801645168525"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 text-xl text-(--txt-accent)"
+                  className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 md:text-base lg:text-xl text-(--txt-accent)"
                 >
                   <SiWhatsapp />
                 </a>
