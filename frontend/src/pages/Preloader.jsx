@@ -28,7 +28,7 @@ const Preloader = ({ onComplete }) => {
 
     tl.to(percentRef.current, {
       value: 100,
-      duration: 2,
+      duration: 2.5,
       ease: "expo.inOut",
       onUpdate: () => {
         if (textRef.current) {
