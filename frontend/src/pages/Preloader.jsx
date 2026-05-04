@@ -58,7 +58,7 @@ const Preloader = ({ onComplete }) => {
         portfolio
       </div>
 
-      <div className="fixed inset-0 flex items-end justify-end bg-(--bg-primary)">
+      <div className="absolute bottom-0 right-0 flex items-end justify-end bg-(--bg-primary) z-50">
         <div className="p-6 text-(--txt-primary) text-2xl">
           <span ref={textRef}>0%</span>
         </div>
