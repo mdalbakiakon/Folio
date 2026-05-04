@@ -12,7 +12,7 @@ const Hero = () => {
   useGSAP(() => {
     gsap.from(vidRef.current, {
       opacity: 0,
-      scale:1.25,
+      scale: 1.25,
       duration: 1.25,
       ease: "sine.inOut",
     });
@@ -118,15 +118,18 @@ Z"
                 </h2>
                 <h1 className="text-5xl">Software Engineer</h1>
               </div>
+
               <video
                 ref={vidRef}
-                src={heroVid}
+                src={window.__heroVideoCache?.src || heroVid}
+                poster="/hero.jpg"
                 loop
                 autoPlay
                 muted
+                fetchPriority="high"
                 playsInline
                 controls={false}
-                preload="metadata"
+                preload="auto"
                 onContextMenu={(e) => e.preventDefault()}
                 className="w-full h-full object-cover brightness-75 contrast-125"
               />

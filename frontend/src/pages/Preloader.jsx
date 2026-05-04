@@ -1,21 +1,28 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import heroVid from "../assets/heroVid.mp4";
 
 const Preloader = ({ onComplete }) => {
   const loaderRef = useRef();
   const percentRef = useRef({ value: 0 });
   const textRef = useRef();
-  const shineRef = useRef();
 
   useGSAP(() => {
+    const video = document.createElement("video");
+    video.src = heroVid;
+    video.preload = "auto";
+    video.muted = true;
+    video.playsInline = true;
+    video.load();
 
-    gsap.from(shineRef.current,{
-      opacity:0,
-      delay: 0.2,
-      duration: 0.8,
-      ease: "sine.in"
-    })
+    // wait until browser can actually play it
+    video.addEventListener("canplaythrough", () => {
+      window.__heroVideoReady = true;
+    });
+
+    // keep reference alive so browser doesn't cancel request
+    window.__heroVideoCache = video;
 
     const tl = gsap.timeline();
 
@@ -51,10 +58,7 @@ const Preloader = ({ onComplete }) => {
       ref={loaderRef}
       className="w-full h-dvh relative flex flex-col justify-center items-center"
     >
-      <div
-      ref={shineRef}
-        className="text-9xl relative z-50 bg-[linear-gradient(110deg,#111_0%,#fff_20%,#c0c0c0_40%,#fff_60%,#111_98%)] bg-clip-text text-transparent"
-      >
+      <div className="text-9xl relative z-50 bg-[linear-gradient(110deg,#111_0%,#fff_20%,#c0c0c0_40%,#fff_60%,#111_98%)] bg-clip-text text-transparent">
         portfolio
       </div>
 
