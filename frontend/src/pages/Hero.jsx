@@ -84,9 +84,8 @@ const Hero = () => {
       <Layout>
         {/* DESKTOP */}
         <div className="h-[calc(100dvh-248px)] w-full justify-center items-center hidden md:flex">
-          <div className="w-full h-fit relative">
-
-                      <div className="md:h-[6.8%] md:w-[14.5%] absolute top-0 right-0 text-(--txt-accent) md:text-[14px] lg:text-base flex justify-center items-center text-center">
+          <div className="lg:aspect-video h-fit max-h-full relative flex justify-center items-center">
+            <div className="md:h-[6.8%] md:w-[14.5%] absolute top-0 right-0 text-(--txt-accent) md:text-[14px] lg:text-base flex justify-center items-center text-center">
               Since 2022
             </div>
 
@@ -145,7 +144,7 @@ const Hero = () => {
               </li>
             </ul>
 
-            <div className="w-full aspect-video [clip-path:url('#heroVideo')] relative">
+            <div className="max-h-full aspect-video [clip-path:url('#heroVideo')] relative">
               <div className="absolute md:bottom-[10%] md:left-[2.5%] lg:bottom-[10.5%] z-40 text-(--txt-primary) text-left select-none">
                 <h2 className="md:text-[12.5px] lg:text-base">
                   <span className="text-(--txt-accent) opacity-75 md:text-xl lg:text-2xl">
@@ -163,7 +162,7 @@ const Hero = () => {
                 muted
                 playsInline
                 controls={false}
-                preload="metadata"   
+                preload="metadata"
                 onContextMenu={(e) => e.preventDefault()}
                 className="w-full h-full object-cover brightness-75 contrast-125"
               />
