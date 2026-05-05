@@ -86,7 +86,64 @@ const Hero = () => {
         <div className="h-[calc(100dvh-248px)] w-full justify-center items-center hidden md:flex">
           <div className="w-full h-fit relative">
 
-            {/* (UI unchanged...) */}
+                      <div className="md:h-[6.8%] md:w-[14.5%] absolute top-0 right-0 text-(--txt-accent) md:text-[14px] lg:text-base flex justify-center items-center text-center">
+              Since 2022
+            </div>
+
+            <ul className="absolute md:h-[6.8%] md:w-[19.5%] bottom-0 left-0 rounded-2xl flex justify-around items-center">
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/md-al-baki-akon-352989362/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 md:text-base lg:text-xl text-(--txt-accent)"
+                >
+                  <FaLinkedin />
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="https://github.com/mdalbakiakon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 md:text-base lg:text-xl text-(--txt-accent)"
+                >
+                  <SiGithub />
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="https://leetcode.com/u/baki_dev8131/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 md:text-base lg:text-xl text-(--txt-accent)"
+                >
+                  <SiLeetcode />
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="mailto:mdalbakiakon.dev@gmail.com"
+                  className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 md:text-base lg:text-xl text-(--txt-accent)"
+                >
+                  <MdMail />
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="https://wa.me/8801645168525"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 md:text-base lg:text-xl text-(--txt-accent)"
+                >
+                  <SiWhatsapp />
+                </a>
+              </li>
+            </ul>
 
             <div className="w-full aspect-video [clip-path:url('#heroVideo')] relative">
               <div className="absolute md:bottom-[10%] md:left-[2.5%] lg:bottom-[10.5%] z-40 text-(--txt-primary) text-left select-none">
@@ -118,7 +175,63 @@ const Hero = () => {
         <div className="w-full h-full flex justify-center items-center md:hidden">
           <div className="w-full h-[calc(100dvh-152px)] relative flex justify-center items-center">
             <div className="w-fit h-fit relative">
+               <div className="h-[7.5%] w-[35%] absolute top-0 right-0 text-(--txt-accent) text-[13px] sm:text-base flex justify-center items-center text-center">                 Since 2022
+               </div>
 
+              <ul className="h-[7.5%] w-[45%] absolute bottom-0 left-0 rounded-2xl flex justify-around items-center">
+                <li>
+                  <a
+                    href="https://www.linkedin.com/in/md-al-baki-akon-352989362/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 text-[14px] sm:text-base text-(--txt-accent)"
+                  >
+                    <FaLinkedin />
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/mdalbakiakon"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 text-[14px] sm:text-base text-(--txt-accent)"
+                  >
+                    <SiGithub />
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="https://leetcode.com/u/baki_dev8131/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 text-[14px] sm:text-base text-(--txt-accent)"
+                  >
+                    <SiLeetcode />
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="mailto:mdalbakiakon.dev@gmail.com"
+                    className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 text-[14px] sm:text-base text-(--txt-accent)"
+                  >
+                    <MdMail />
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="https://wa.me/8801645168525"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 text-[14px] sm:text-base text-(--txt-accent)"
+                  >
+                    <SiWhatsapp />
+                  </a>
+                </li>
+              </ul>
 
               <div className="max-[544px]:w-full min-[544px]:h-[calc(100dvh-152px)] aspect-3/4 [clip-path:url('#heroVideoMobile')] relative">
                 <div className="absolute bottom-[10%] sm:bottom-[9%] left-[2.5%] z-40 text-(--txt-primary)">
