@@ -10,26 +10,39 @@ const Preloader = ({ onComplete }) => {
 
   useGSAP(() => {
     const video = document.createElement("video");
+
     video.src = heroVid;
     video.preload = "auto";
     video.muted = true;
     video.playsInline = true;
     video.load();
 
-    // wait until browser can actually play it
-    video.addEventListener("canplaythrough", () => {
-      window.__heroVideoReady = true;
-    });
-
-    // keep reference alive so browser doesn't cancel request
+    // store globally so Hero can reuse SAME decoded video
     window.__heroVideoCache = video;
 
-    const tl = gsap.timeline();
+    //  true readiness (download + decode attempt)
+    const videoReady = new Promise((resolve) => {
+      video.addEventListener("loadeddata", async () => {
+        try {
+          await video.play();
+          video.pause();
+        } catch (e) {
+          // ignore autoplay block
+        }
+        resolve();
+      });
+    });
 
-    tl.to(percentRef.current, {
-      value: 100,
-      duration: 2.5,
-      ease: "expo.inOut",
+    // minimum loader time
+    const minTime = new Promise((resolve) =>
+      setTimeout(resolve, 2500)
+    );
+
+    // fake progress animation
+    const progress = gsap.to(percentRef.current, {
+      value: 95,
+      duration: 2,
+      ease: "power2.out",
       onUpdate: () => {
         if (textRef.current) {
           textRef.current.textContent =
@@ -38,34 +51,43 @@ const Preloader = ({ onComplete }) => {
       },
     });
 
-    tl.fromTo(
-      textRef.current,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.6 },
-      0,
-    );
+    Promise.all([videoReady, minTime]).then(() => {
+      progress.kill();
 
-    tl.to(loaderRef.current, {
-      opacity: 0,
-      duration: 0.8,
-      delay: 0.2,
-      onComplete: onComplete,
+      gsap.to(percentRef.current, {
+        value: 100,
+        duration: 0.3,
+        onUpdate: () => {
+          if (textRef.current) {
+            textRef.current.textContent =
+              Math.floor(percentRef.current.value) + "%";
+          }
+        },
+      });
+
+      gsap.to(loaderRef.current, {
+        opacity: 0,
+        duration: 0.8,
+        onComplete: onComplete,
+      });
     });
+
+    return () => {
+      video.remove();
+    };
   }, [onComplete]);
 
   return (
     <div
       ref={loaderRef}
-      className="w-full h-dvh relative flex flex-col justify-center items-center"
+      className="w-full h-dvh flex flex-col justify-center items-center"
     >
       <div className="text-5xl sm:text-7xl lg:text-9xl relative z-50 bg-[linear-gradient(110deg,#111_0%,#fff_20%,#c0c0c0_40%,#fff_60%,#111_98%)] bg-clip-text text-transparent">
         portfolio
       </div>
 
-      <div className="absolute bottom-0 right-0 flex items-end justify-end bg-(--bg-primary) z-50">
-        <div className="p-6 text-(--txt-primary) text-xl sm:text-2xl">
-          <span ref={textRef}>0%</span>
-        </div>
+      <div className="absolute bottom-0 right-0 p-6 text-xl sm:text-2xl text-(--txt-primary)">
+        <span ref={textRef}>0%</span>
       </div>
     </div>
   );

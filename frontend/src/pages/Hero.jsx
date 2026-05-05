@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import Layout from "../components/Layout";
 import heroVid from "../assets/heroVid.mp4";
 import { SiLeetcode, SiGithub, SiWhatsapp } from "react-icons/si";
@@ -8,15 +8,47 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 const Hero = () => {
-  const vidRef = useRef();
+  const desktopVidRef = useRef();
+  const mobileVidRef = useRef();
   useGSAP(() => {
-    gsap.from(vidRef.current, {
+    const isMobile = window.innerWidth < 768;
+
+    const target = isMobile ? mobileVidRef.current : desktopVidRef.current;
+
+    if (!target) return;
+
+    gsap.from(target, {
       opacity: 0,
       scale: 1.25,
       duration: 1.25,
       ease: "sine.inOut",
     });
   }, []);
+
+  useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    const video = isMobile ? mobileVidRef.current : desktopVidRef.current;
+
+    if (!video) return;
+
+    // reuse cached video if available
+    if (window.__heroVideoCache) {
+      video.src = window.__heroVideoCache.src;
+    }
+
+    video.currentTime = 0;
+
+    const playVideo = async () => {
+      try {
+        await video.play();
+      } catch (e) {
+        // autoplay may fail (especially iOS Safari)
+      }
+    };
+
+    playVideo();
+  }, []);
+
   return (
     <section className="w-full h-dvh flex justify-center items-center">
       <svg width="0" height="0">
@@ -147,7 +179,7 @@ Z"
               </div>
 
               <video
-                ref={vidRef}
+                ref={desktopVidRef}
                 src={window.__heroVideoCache?.src || heroVid}
                 loop
                 autoPlay
@@ -171,62 +203,60 @@ Z"
                 Since 2022
               </div>
 
-
-
               <ul className="h-[7.5%] w-[45%] absolute bottom-0 left-0 rounded-2xl flex justify-around items-center">
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/md-al-baki-akon-352989362/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 text-[14px] sm:text-base text-(--txt-accent)"
-                >
-                  <FaLinkedin />
-                </a>
-              </li>
+                <li>
+                  <a
+                    href="https://www.linkedin.com/in/md-al-baki-akon-352989362/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 text-[14px] sm:text-base text-(--txt-accent)"
+                  >
+                    <FaLinkedin />
+                  </a>
+                </li>
 
-              <li>
-                <a
-                  href="https://github.com/mdalbakiakon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 text-[14px] sm:text-base text-(--txt-accent)"
-                >
-                  <SiGithub />
-                </a>
-              </li>
+                <li>
+                  <a
+                    href="https://github.com/mdalbakiakon"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 text-[14px] sm:text-base text-(--txt-accent)"
+                  >
+                    <SiGithub />
+                  </a>
+                </li>
 
-              <li>
-                <a
-                  href="https://leetcode.com/u/baki_dev8131/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 text-[14px] sm:text-base text-(--txt-accent)"
-                >
-                  <SiLeetcode />
-                </a>
-              </li>
+                <li>
+                  <a
+                    href="https://leetcode.com/u/baki_dev8131/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 text-[14px] sm:text-base text-(--txt-accent)"
+                  >
+                    <SiLeetcode />
+                  </a>
+                </li>
 
-              <li>
-                <a
-                  href="mailto:mdalbakiakon.dev@gmail.com"
-                  className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 text-[14px] sm:text-base text-(--txt-accent)"
-                >
-                  <MdMail />
-                </a>
-              </li>
+                <li>
+                  <a
+                    href="mailto:mdalbakiakon.dev@gmail.com"
+                    className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 text-[14px] sm:text-base text-(--txt-accent)"
+                  >
+                    <MdMail />
+                  </a>
+                </li>
 
-              <li>
-                <a
-                  href="https://wa.me/8801645168525"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 text-[14px] sm:text-base text-(--txt-accent)"
-                >
-                  <SiWhatsapp />
-                </a>
-              </li>
-            </ul>
+                <li>
+                  <a
+                    href="https://wa.me/8801645168525"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-(--txt-primary) transition-all ease-in-out duration-700 text-[14px] sm:text-base text-(--txt-accent)"
+                  >
+                    <SiWhatsapp />
+                  </a>
+                </li>
+              </ul>
 
               <div className="max-[544px]:w-full min-[544px]:h-[calc(100dvh-152px)] aspect-3/4 [clip-path:url('#heroVideoMobile')] relative">
                 <div className="absolute bottom-[10%] sm:bottom-[9%] left-[2.5%] md:hidden z-40 text-(--txt-primary) text-left select-none">
@@ -242,7 +272,7 @@ Z"
                 </div>
 
                 <video
-                  ref={vidRef}
+                  ref={mobileVidRef}
                   src={window.__heroVideoCache?.src || heroVid}
                   loop
                   autoPlay
