@@ -110,7 +110,7 @@ Z"
 
             <div className="w-full aspect-video [clip-path:url('#heroVideo')] relative">
               <div className="absolute md:bottom-[10%] md:left-[2.5%] lg:bottom-[10.5%] z-40 text-(--txt-primary) text-left select-none">
-                <h2 className="md:text-[14px] lg:text-base">
+                <h2 className="md:text-[12.5px] lg:text-base">
                   <span className="text-(--txt-accent) opacity-45 md:text-xl lg:text-2xl">
                     Baki,
                   </span>{" "}
