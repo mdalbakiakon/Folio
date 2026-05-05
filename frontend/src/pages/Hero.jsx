@@ -49,7 +49,7 @@ Z"
       <Layout>
         <div className="h-[calc(100vh-120px)] w-full flex justify-center items-center">
           <div className="w-full h-fit relative hidden md:block">
-            <button className="md:h-[6.8%] md:w-[14.5%] absolute top-0 right-0 text-(--txt-accent) md:text-[14px] lg:text-base flex justify-center items-center">
+            <button className="md:h-[6.8%] md:w-[14.5%] absolute top-0 right-0 text-(--txt-accent) md:text-[14px] lg:text-base flex justify-center items-center text-center">
               Since 2022
             </button>
 
@@ -109,14 +109,14 @@ Z"
             </ul>
 
             <div className="w-full aspect-video [clip-path:url('#heroVideo')] relative">
-              <div className="absolute bottom-20 left-10 z-40 text-(--txt-primary) text-left select-none">
-                <h2>
-                  <span className="text-(--txt-accent) opacity-45 text-2xl">
+              <div className="absolute md:bottom-[10%] md:left-[2.5%] lg:bottom-[10.5%] z-40 text-(--txt-primary) text-left select-none">
+                <h2 className="md:text-[14px] lg:text-base">
+                  <span className="text-(--txt-accent) opacity-45 md:text-xl lg:text-2xl">
                     Baki,
                   </span>{" "}
                   Full Stack | MERN
                 </h2>
-                <h1 className="text-5xl">Software Engineer</h1>
+                <h1 className="md:text-4xl lg:text-5xl">Software Engineer</h1>
               </div>
 
               <video
