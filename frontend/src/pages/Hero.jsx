@@ -149,7 +149,6 @@ Z"
               <video
                 ref={vidRef}
                 src={window.__heroVideoCache?.src || heroVid}
-                poster="/hero.jpg"
                 loop
                 autoPlay
                 muted
@@ -245,7 +244,6 @@ Z"
                 <video
                   ref={vidRef}
                   src={window.__heroVideoCache?.src || heroVid}
-                  poster="/hero.jpg"
                   loop
                   autoPlay
                   muted
