@@ -138,7 +138,7 @@ Z"
             <div className="w-full aspect-video [clip-path:url('#heroVideo')] relative">
               <div className="absolute md:bottom-[10%] md:left-[2.5%] lg:bottom-[10.5%] z-40 text-(--txt-primary) text-left select-none">
                 <h2 className="md:text-[12.5px] lg:text-base">
-                  <span className="text-(--txt-accent) opacity-45 md:text-xl lg:text-2xl">
+                  <span className="text-(--txt-accent) opacity-75 md:text-xl lg:text-2xl">
                     Baki,
                   </span>{" "}
                   Full Stack | MERN
@@ -231,7 +231,7 @@ Z"
               <div className="max-[544px]:w-full min-[544px]:h-[calc(100dvh-152px)] aspect-3/4 [clip-path:url('#heroVideoMobile')] relative">
                 <div className="absolute bottom-[10%] sm:bottom-[9%] left-[2.5%] md:hidden z-40 text-(--txt-primary) text-left select-none">
                   <h2 className="text-[12px] sm:text-[14px]">
-                    <span className="text-(--txt-accent) opacity-45 text-lg sm:text-[20px]">
+                    <span className="text-(--txt-accent) opacity-75 text-lg sm:text-[20px]">
                       Baki,
                     </span>{" "}
                     Full Stack | MERN
