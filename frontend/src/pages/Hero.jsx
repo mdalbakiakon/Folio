@@ -10,6 +10,8 @@ import gsap from "gsap";
 const Hero = () => {
   const desktopVidRef = useRef();
   const mobileVidRef = useRef();
+  const heroMobTxt = useRef();
+  const heroPcTxt = useRef();
 
   useGSAP(() => {
     const isMobile = window.innerWidth < 768;
@@ -23,6 +25,22 @@ const Hero = () => {
       duration: 1.25,
       ease: "sine.inOut",
     });
+
+    gsap.from(heroMobTxt.current, {
+      opacity: 0,
+      y: 20,
+      duration: 1,
+      delay: 0.5,
+      ease: "power2",
+    });
+
+    gsap.from(heroPcTxt.current, {
+      opacity: 0,
+      y: 20,
+      duration: 1,
+      delay: 0.5,
+      ease: "power2",
+    });
   }, []);
 
   useEffect(() => {
@@ -31,18 +49,18 @@ const Hero = () => {
 
     if (!video) return;
 
-    // // reuse preloaded video properly
-    // if (window.__heroVideoCache) {
-    //   const cached = window.__heroVideoCache;
+    // reuse preloaded video properly
+    if (window.__heroVideoCache) {
+      const cached = window.__heroVideoCache;
 
-    //   video.src = cached.currentSrc || cached.src;
+      video.src = cached.currentSrc || cached.src;
 
-    //   // sync playback position (instant feel)
-    //   video.currentTime = cached.currentTime || 0;
+      // sync playback position (instant feel)
+      video.currentTime = cached.currentTime || 0;
 
-    //   // force browser to reuse buffer
-    //   video.load();
-    // }
+      // force browser to reuse buffer
+      video.load();
+    }
 
     const playVideo = async () => {
       try {
@@ -145,7 +163,10 @@ const Hero = () => {
             </ul>
 
             <div className="max-h-full aspect-video [clip-path:url('#heroVideo')] relative">
-              <div className="absolute md:bottom-[10%] md:left-[2.5%] lg:bottom-[10.5%] z-40 text-(--txt-primary) text-left select-none">
+              <div
+                ref={heroPcTxt}
+                className="absolute md:bottom-[10%] md:left-[2.5%] lg:bottom-[10.5%] z-40 text-(--txt-primary) text-left select-none"
+              >
                 <h2 className="md:text-[12.5px] lg:text-base">
                   <span className="text-(--txt-accent) opacity-75 md:text-xl lg:text-2xl">
                     Baki,
@@ -157,14 +178,13 @@ const Hero = () => {
 
               <video
                 ref={desktopVidRef}
-                src={heroVid}
+                src={window.__heroVideoCache?.src || heroVid}
                 loop
                 poster="/poster.png"
                 muted
                 playsInline
-                webkit-playsinline="true"
                 controls={false}
-                preload="auto"
+                preload="metadata"
                 onContextMenu={(e) => e.preventDefault()}
                 className="w-full h-full object-cover brightness-75 contrast-125"
               />
@@ -176,8 +196,10 @@ const Hero = () => {
         <div className="w-full h-full flex justify-center items-center md:hidden">
           <div className="w-full h-[calc(100dvh-152px)] relative flex justify-center items-center">
             <div className="w-fit h-fit relative">
-               <div className="h-[7.5%] w-[35%] absolute top-0 right-0 text-(--txt-accent) text-[13px] sm:text-base flex justify-center items-center text-center">                 Since 2022
-               </div>
+              <div className="h-[7.5%] w-[35%] absolute top-0 right-0 text-(--txt-accent) text-[13px] sm:text-base flex justify-center items-center text-center">
+                {" "}
+                Since 2022
+              </div>
 
               <ul className="h-[7.5%] w-[45%] absolute bottom-0 left-0 rounded-2xl flex justify-around items-center">
                 <li>
@@ -235,7 +257,10 @@ const Hero = () => {
               </ul>
 
               <div className="max-[544px]:w-full min-[544px]:h-[calc(100dvh-152px)] aspect-3/4 [clip-path:url('#heroVideoMobile')] relative">
-                <div className="absolute bottom-[10%] sm:bottom-[9%] left-[2.5%] z-40 text-(--txt-primary)">
+                <div
+                  ref={heroMobTxt}
+                  className="absolute bottom-[10%] sm:bottom-[9%] left-[2.5%] z-40 text-(--txt-primary)"
+                >
                   <h2 className="text-[12px] sm:text-[14px]">
                     <span className="text-(--txt-accent) opacity-75 text-lg sm:text-[20px]">
                       Baki,
@@ -249,14 +274,13 @@ const Hero = () => {
 
                 <video
                   ref={mobileVidRef}
-                  src={heroVid}
+                  src={window.__heroVideoCache?.src || heroVid}
                   poster="/poster.png"
                   loop
                   muted
                   playsInline
-                  webkit-playsinline="true"
                   controls={false}
-                  preload="auto"  
+                  preload="metadata"
                   onContextMenu={(e) => e.preventDefault()}
                   className="w-full h-full object-cover brightness-75 contrast-125"
                 />
