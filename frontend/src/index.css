@@ -27,4 +27,5 @@ body {
 
 video {
   will-change: transform, opacity;
+  
 }

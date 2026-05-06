@@ -31,18 +31,18 @@ const Hero = () => {
 
     if (!video) return;
 
-    // reuse preloaded video properly
-    if (window.__heroVideoCache) {
-      const cached = window.__heroVideoCache;
+    // // reuse preloaded video properly
+    // if (window.__heroVideoCache) {
+    //   const cached = window.__heroVideoCache;
 
-      video.src = cached.currentSrc || cached.src;
+    //   video.src = cached.currentSrc || cached.src;
 
-      // sync playback position (instant feel)
-      video.currentTime = cached.currentTime || 0;
+    //   // sync playback position (instant feel)
+    //   video.currentTime = cached.currentTime || 0;
 
-      // force browser to reuse buffer
-      video.load();
-    }
+    //   // force browser to reuse buffer
+    //   video.load();
+    // }
 
     const playVideo = async () => {
       try {
@@ -157,12 +157,14 @@ const Hero = () => {
 
               <video
                 ref={desktopVidRef}
-                src={window.__heroVideoCache?.src || heroVid}
+                src={heroVid}
                 loop
+                poster="/poster.png"
                 muted
                 playsInline
+                webkit-playsinline="true"
                 controls={false}
-                preload="metadata"
+                preload="auto"
                 onContextMenu={(e) => e.preventDefault()}
                 className="w-full h-full object-cover brightness-75 contrast-125"
               />
@@ -247,12 +249,14 @@ const Hero = () => {
 
                 <video
                   ref={mobileVidRef}
-                  src={window.__heroVideoCache?.src || heroVid}
+                  src={heroVid}
+                  poster="/poster.png"
                   loop
                   muted
                   playsInline
+                  webkit-playsinline="true"
                   controls={false}
-                  preload="metadata"  
+                  preload="auto"  
                   onContextMenu={(e) => e.preventDefault()}
                   className="w-full h-full object-cover brightness-75 contrast-125"
                 />
