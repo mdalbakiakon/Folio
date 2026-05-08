@@ -12,6 +12,10 @@ const Hero = () => {
   const mobileVidRef = useRef();
   const heroMobTxt = useRef();
   const heroPcTxt = useRef();
+  const pcSince = useRef();
+  const mobSince = useRef();
+  const pcLink = useRef();
+  const mobLink = useRef();
 
   useGSAP(() => {
     const isMobile = window.innerWidth < 768;
@@ -41,6 +45,37 @@ const Hero = () => {
       delay: 0.5,
       ease: "power2",
     });
+
+    gsap.from(pcSince.current,{
+      opacity: 0,
+      delay: 1,
+      duration: 1.5,
+      ease: "power2"
+    })
+
+    gsap.from(pcLink.current,{
+      opacity: 0,
+      y: 25,
+      delay: 0.75,
+      duration: 1.75,
+      ease: "power2",
+    })
+
+    gsap.from(mobSince.current,{
+      opacity: 0,
+      delay: 1,
+      duration: 1.5,
+      ease: "power2"
+    })
+
+    gsap.from(mobLink.current,{
+      opacity: 0,
+      y: 25,
+      delay: 0.75,
+      duration: 1.75,
+      ease: "power2",
+    })
+
   }, []);
 
   useEffect(() => {
@@ -69,8 +104,8 @@ const Hero = () => {
         // mobile/iOS fallback
         const resume = () => {
           video.play();
-          window.removeEventListener("touchstart", resume);
-          window.removeEventListener("click", resume);
+          // window.removeEventListener("touchstart", resume);
+          // window.removeEventListener("click", resume);
         };
 
         window.addEventListener("touchstart", resume, { once: true });
@@ -103,11 +138,11 @@ const Hero = () => {
         {/* DESKTOP */}
         <div className="h-[calc(100dvh-248px)] w-full justify-center items-center hidden md:flex">
           <div className="lg:aspect-video h-fit max-h-full relative flex justify-center items-center">
-            <div className="md:h-[6.8%] md:w-[14.5%] absolute top-0 right-0 text-(--txt-accent) md:text-[14px] lg:text-base flex justify-center items-center text-center">
+            <div ref={pcSince} className="md:h-[6.8%] md:w-[14.5%] absolute top-0 right-0 text-(--txt-accent) md:text-[14px] lg:text-base flex justify-center items-center text-center">
               Since 2022
             </div>
 
-            <ul className="absolute md:h-[6.8%] md:w-[19.5%] bottom-0 left-0 rounded-2xl flex justify-around items-center">
+            <ul ref={pcLink} className="absolute md:h-[6.8%] md:w-[19.5%] bottom-0 left-0 rounded-2xl flex justify-around items-center">
               <li>
                 <a
                   href="https://www.linkedin.com/in/md-al-baki-akon-352989362/"
@@ -196,12 +231,12 @@ const Hero = () => {
         <div className="w-full h-full flex justify-center items-center md:hidden">
           <div className="w-full h-[calc(100dvh-152px)] relative flex justify-center items-center">
             <div className="w-fit h-fit relative">
-              <div className="h-[7.5%] w-[35%] absolute top-0 right-0 text-(--txt-accent) text-[13px] sm:text-base flex justify-center items-center text-center">
+              <div ref={mobSince} className="h-[7.5%] w-[35%] absolute top-0 right-0 text-(--txt-accent) text-[13px] sm:text-base flex justify-center items-center text-center">
                 {" "}
                 Since 2022
               </div>
 
-              <ul className="h-[7.5%] w-[45%] absolute bottom-0 left-0 rounded-2xl flex justify-around items-center">
+              <ul ref={mobLink} className="h-[7.5%] w-[45%] absolute bottom-0 left-0 rounded-2xl flex justify-around items-center">
                 <li>
                   <a
                     href="https://www.linkedin.com/in/md-al-baki-akon-352989362/"
