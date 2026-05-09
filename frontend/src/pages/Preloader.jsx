@@ -137,7 +137,7 @@ const Preloader = ({ onComplete }) => {
 
     // device based
     const width = window.innerWidth;
-    
+
     let selectedVideo = hero1080;
 
     if (width <= 640) {
@@ -154,6 +154,8 @@ const Preloader = ({ onComplete }) => {
       video.preload = "auto";
       video.muted = true;
       video.playsInline = true;
+      video.setAttribute("playsinline", "");
+      video.setAttribute("muted", "");
 
       // start loading
       video.load();
@@ -161,9 +163,9 @@ const Preloader = ({ onComplete }) => {
       // forced first frame decocing
       video.addEventListener("loadeddata", () => {
         try {
-          video.currentTime = 0.1; 
+          video.currentTime = 0.1;
         } catch (e) {}
-        video.pause(); 
+        video.pause();
       });
 
       // expose for Hero
@@ -171,8 +173,11 @@ const Preloader = ({ onComplete }) => {
     };
 
     // run in parallel (non-blocking)
-    requestIdleCallback?.(preloadVideo) ||
-      setTimeout(preloadVideo, 0);
+    if (typeof requestIdleCallback === "function") {
+      requestIdleCallback(preloadVideo);
+    } else {
+      setTimeout(preloadVideo, 100);
+    }
 
     // loading text
     const updateText = () => {
