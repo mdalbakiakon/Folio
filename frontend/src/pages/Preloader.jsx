@@ -119,28 +119,64 @@
 
 // export default Preloader;
 
-
-
-
-
 import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
+import hero540 from "../assets/hero-540.mp4";
+import hero720 from "../assets/hero-720.mp4";
+import hero1080 from "../assets/hero-1080.mp4";
+
 const Preloader = ({ onComplete }) => {
   const loaderRef = useRef();
-  const percentRef = useRef({ value: 0 });
   const textRef = useRef();
 
   useGSAP(() => {
     let resolved = false;
-
     const progress = { value: 0 };
 
+    // device based
+    const width = window.innerWidth;
+
+    if (width <= 640) {
+      selectedVideo = hero540;
+    } else if (width <= 1024) {
+      selectedVideo = hero720;
+    }
+    let selectedVideo = hero1080;
+
+    // video preloader
+    const preloadVideo = () => {
+      const video = document.createElement("video");
+
+      video.src = selectedVideo;
+      video.preload = "auto";
+      video.muted = true;
+      video.playsInline = true;
+
+      // start loading
+      video.load();
+
+      // forced first frame decocing
+      video.addEventListener("loadeddata", () => {
+        try {
+          video.currentTime = 0.1; 
+        } catch (e) {}
+        video.pause(); 
+      });
+
+      // expose for Hero
+      window.__heroVideoPreload = video;
+    };
+
+    // run in parallel (non-blocking)
+    requestIdleCallback?.(preloadVideo) ||
+      setTimeout(preloadVideo, 0);
+
+    // loading text
     const updateText = () => {
       if (textRef.current) {
-        textRef.current.textContent =
-          Math.floor(progress.value) + "%";
+        textRef.current.textContent = Math.floor(progress.value) + "%";
       }
     };
 
@@ -160,7 +196,7 @@ const Preloader = ({ onComplete }) => {
       });
     };
 
-    // Smooth fake loading
+    // fake loading animation
     const tl = gsap.timeline();
 
     tl.to(progress, {
@@ -191,7 +227,7 @@ const Preloader = ({ onComplete }) => {
       }
     });
 
-    // Safety fallback
+    // safety fallback
     const maxWait = setTimeout(() => {
       if (!resolved) {
         resolved = true;

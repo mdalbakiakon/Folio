@@ -349,6 +349,8 @@ const Hero = () => {
   const pcLink = useRef();
   const mobLink = useRef();
 
+  const cachedVideo = window.__heroVideoPreload;
+
   useGSAP(() => {
     const isMobile = window.innerWidth < 768;
     const target = isMobile ? mobileVidRef.current : desktopVidRef.current;
@@ -496,6 +498,7 @@ const Hero = () => {
               {/* Responsive video*/}
               <video
                 ref={desktopVidRef}
+                src={cachedVideo?.src || heroVid}
                 loop
                 muted
                 autoPlay
@@ -504,19 +507,7 @@ const Hero = () => {
                 preload="metadata"
                 onContextMenu={(e) => e.preventDefault()}
                 className="w-full h-full object-cover brightness-75 contrast-125"
-              >
-                <source
-                  src={hero540}
-                  media="(max-width: 640px)"
-                  type="video/mp4"
-                />
-                <source
-                  src={hero720}
-                  media="(max-width: 1024px)"
-                  type="video/mp4"
-                />
-                <source src={hero1080} type="video/mp4" />
-              </video>
+              />
             </div>
           </div>
         </div>
@@ -605,6 +596,7 @@ const Hero = () => {
                 {/* Responsive video */}
                 <video
                   ref={mobileVidRef}
+                  src={cachedVideo?.src || heroVid}
                   loop
                   muted
                   autoPlay
@@ -613,19 +605,7 @@ const Hero = () => {
                   preload="metadata"
                   onContextMenu={(e) => e.preventDefault()}
                   className="w-full h-full object-cover brightness-75 contrast-125"
-                >
-                  <source
-                    src={hero540}
-                    media="(max-width: 640px)"
-                    type="video/mp4"
-                  />
-                  <source
-                    src={hero720}
-                    media="(max-width: 1024px)"
-                    type="video/mp4"
-                  />
-                  <source src={hero1080} type="video/mp4" />
-                </video>
+                />
               </div>
             </div>
           </div>
