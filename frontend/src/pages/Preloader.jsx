@@ -137,13 +137,14 @@ const Preloader = ({ onComplete }) => {
 
     // device based
     const width = window.innerWidth;
+    
+    let selectedVideo = hero1080;
 
     if (width <= 640) {
       selectedVideo = hero540;
     } else if (width <= 1024) {
       selectedVideo = hero720;
     }
-    let selectedVideo = hero1080;
 
     // video preloader
     const preloadVideo = () => {
