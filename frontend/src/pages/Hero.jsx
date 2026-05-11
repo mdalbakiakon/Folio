@@ -40,17 +40,11 @@ const Hero = () => {
   useGSAP(() => {
     const isMobile = window.innerWidth < 768;
 
-    const target = isMobile
-      ? mobileVidRef.current
-      : desktopVidRef.current;
+    const target = isMobile ? mobileVidRef.current : desktopVidRef.current;
 
-    const sinceTarget = isMobile
-      ? mobSince.current
-      : pcSince.current;
+    const sinceTarget = isMobile ? mobSince.current : pcSince.current;
 
-    const linkTarget = isMobile
-      ? mobLink.current
-      : pcLink.current;
+    const linkTarget = isMobile ? mobLink.current : pcLink.current;
 
     if (!target) return;
 
@@ -192,20 +186,21 @@ const Hero = () => {
                   Full Stack | MERN
                 </h2>
 
-                <h1 className="md:text-4xl lg:text-5xl">
-                  Software Engineer
-                </h1>
+                <h1 className="md:text-4xl lg:text-5xl">Software Engineer</h1>
               </div>
 
               <video
                 ref={desktopVidRef}
                 src={cachedVideo?.src || heroVid}
-                loop
-                muted
                 autoPlay
+                muted
+                loop
                 playsInline
+                webkit-playsinline="true"
+                preload="auto"
                 controls={false}
-                preload="metadata"
+                disablePictureInPicture
+                controlsList="nodownload nofullscreen noremoteplayback"
                 onContextMenu={(e) => e.preventDefault()}
                 className="w-full h-full object-cover brightness-75 contrast-125"
               />
@@ -282,7 +277,7 @@ const Hero = () => {
                 </li>
               </ul>
 
-              <div className="max-[544px]:w-full min-[544px]:h-[calc(100dvh-152px)] aspect-[3/4] [clip-path:url('#heroVideoMobile')] relative">
+              <div className="max-[544px]:w-full min-[544px]:h-[calc(100dvh-152px)] aspect-3/4 [clip-path:url('#heroVideoMobile')] relative">
                 <div
                   ref={heroMobTxt}
                   className="absolute bottom-[10%] sm:bottom-[9%] left-[2.5%] z-40 text-(--txt-primary)"
@@ -302,12 +297,15 @@ const Hero = () => {
                 <video
                   ref={mobileVidRef}
                   src={cachedVideo?.src || heroVid}
-                  loop
-                  muted
                   autoPlay
+                  muted
+                  loop
                   playsInline
+                  webkit-playsinline="true"
+                  preload="auto"
                   controls={false}
-                  preload="metadata"
+                  disablePictureInPicture
+                  controlsList="nodownload nofullscreen noremoteplayback"
                   onContextMenu={(e) => e.preventDefault()}
                   className="w-full h-full object-cover brightness-75 contrast-125"
                 />
